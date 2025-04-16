@@ -46,7 +46,9 @@ Once the script is running, you can interact with Sarah_v0 by simply speaking in
 
 - "Wake up Sarah"
 - "What's the date?"
+- "What time is it?'
 - "Tell me the weather in New York"
+- "Tell me a joke"
 - "Goodbye"
 
 Sarah_v0 will respond with speech and/or text based on the command received.
