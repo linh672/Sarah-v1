@@ -5,6 +5,7 @@ import pyttsx3
 from datetime import date, datetime
 import python_weather
 import asyncio
+import pyjokes
         
 async def get_weather(city: str) -> str:
     async with python_weather.Client(unit=python_weather.IMPERIAL) as client:
@@ -32,6 +33,8 @@ while True:
         sarah_v0_response = 'hi, what a good sleep, how can I help you?'
     elif 'date' in recognized_text:
         sarah_v0_response = f"Today is {date.today().strftime('%B %d, %Y')}"
+    elif 'time' in recognized_text:
+        sarah_v0_response = f"The current time is{datetime.now().strftime('%I:%M %p')}"
     elif 'goodbye' in recognized_text:
         sarah_v0_response = 'goodbye, have a nice day'
         sarah_v0 = pyttsx3.init() #Text to speech to say goodbye
@@ -50,6 +53,8 @@ while True:
                     sarah_v0_response = "Please tell me the name of the city."
             else:
                 sarah_v0_response = "Please specify a city for the weather."
+    elif 'joke' in recognized_text:
+        sarah_v0_response = pyjokes.get_joke()
     elif 'thank you' in recognized_text:
         sarah_v0_response = "You're welcome, I love to hear more questions"
     else:
