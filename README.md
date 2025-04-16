@@ -6,7 +6,8 @@ This is an AI personal assistant chatbot built with Python, designed to make you
 - **Speech Recognition**: Sarah_v0 listens to your voice commands and processes them in real-time.
 - **Text-to-Speech**: Sarah responds to you with a human-like voice, making it feel more natural and interactive.
 - **Weather Forecasts**: Ask Sarah about the weather, and she'll provide accurate forecasts for cities around the world.
-- **Date Information**: Sarah can tell you today's date and provide detailed date-related information.
+- **Date & Time Information**: Sarah can tell you today's date and the current time.
+- **Joke Telling**: Feeling down or just need a laugh? Ask Sarah to tell you a joke.
 - **Goodbye Command**: When you're done, simply say "goodbye" to end the conversation.
 
 ## Installation
@@ -53,4 +54,7 @@ Sarah_v0 will respond with speech and/or text based on the command received.
 ## Contributing
 
 Feel free to contribute to this project by forking it and submitting pull requests. Any contributions are welcome!
+
+
+
 
