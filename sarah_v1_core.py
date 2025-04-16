@@ -28,42 +28,42 @@ while True:
     print('Thinking...')
 
     #Sarah_v0_brain
-    sarah_v0_response=[]
+    sarah_v1_response=[]
     if recognized_text  == 'wake up Sarah':
-        sarah_v0_response = 'hi, what a good sleep, how can I help you?'
+        sarah_v1_response = 'hi, what a good sleep, how can I help you?'
     elif 'date' in recognized_text:
-        sarah_v0_response = f"Today is {date.today().strftime('%B %d, %Y')}"
+        sarah_v1_response = f"Today is {date.today().strftime('%B %d, %Y')}"
     elif 'time' in recognized_text:
-        sarah_v0_response = f"The current time is{datetime.now().strftime('%I:%M %p')}"
+        sarah_v1_response = f"The current time is{datetime.now().strftime('%I:%M %p')}"
     elif 'goodbye' in recognized_text:
-        sarah_v0_response = 'goodbye, have a nice day'
-        sarah_v0 = pyttsx3.init() #Text to speech to say goodbye
-        voices = sarah_v0.getProperty('voices') 
-        sarah_v0.setProperty('voice', voices[1].id)  
-        sarah_v0.say(sarah_v0_response)
-        sarah_v0.runAndWait()
+        sarah_v1_response = 'goodbye, have a nice day'
+        sarah_v1 = pyttsx3.init() #Text to speech to say goodbye
+        voices = sarah_v1.getProperty('voices') 
+        sarah_v1.setProperty('voice', voices[1].id)  
+        sarah_v1.say(sarah_v1_response)
+        sarah_v1.runAndWait()
         break
     elif 'weather' in recognized_text:
             # Extract city name from recognized text
             if 'in' in recognized_text:
                 city = recognized_text.split('in')[-1].strip()
                 if city:
-                    sarah_v0_response = asyncio.run(get_weather(city))
+                    sarah_v1_response = asyncio.run(get_weather(city))
                 else:
-                    sarah_v0_response = "Please tell me the name of the city."
+                    sarah_v1_response = "Please tell me the name of the city."
             else:
-                sarah_v0_response = "Please specify a city for the weather."
+                sarah_v1_response = "Please specify a city for the weather."
     elif 'joke' in recognized_text:
-        sarah_v0_response = pyjokes.get_joke()
+        sarah_v1_response = pyjokes.get_joke()
     elif 'thank you' in recognized_text:
-        sarah_v0_response = "You're welcome, I love to hear more questions"
+        sarah_v1_response = "You're welcome, I love to hear more questions"
     else:
-        sarah_v0_response = f"Sarah don't understand{recognized_text}, can you say again"
+        sarah_v1_response = f"Sarah don't understand{recognized_text}, can you say again"
 
     #Text to speech
-    sarah_v0 = pyttsx3.init()
-    voices = sarah_v0.getProperty('voices') 
-    sarah_v0.setProperty('voice', voices[1].id)  
-    sarah_v0.say(sarah_v0_response)
-    sarah_v0.runAndWait()
+    sarah_v1 = pyttsx3.init()
+    voices = sarah_v1.getProperty('voices') 
+    sarah_v1.setProperty('voice', voices[1].id)  
+    sarah_v1.say(sarah_v1_response)
+    sarah_v1.runAndWait()
 
