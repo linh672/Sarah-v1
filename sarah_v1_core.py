@@ -2,16 +2,9 @@
 import os
 import speech_recognition as sr
 import pyttsx3
-from datetime import date, datetime
-import python_weather
 import asyncio
 import pyjokes
-import pytz
-
-async def get_weather(city: str) -> str:
-    async with python_weather.Client(unit=python_weather.IMPERIAL) as client:
-        weather = await client.get(city)
-        return f"The current temperature in {city} is {weather.temperature}°F."
+from sarah_module import get_timezone, get_local_time ,get_weather
 
 
 while True:
@@ -32,12 +25,19 @@ while True:
     sarah_v1_response=[]
     if recognized_text  == 'wake up Sarah':
         sarah_v1_response = 'hi, what a good sleep, how can I help you?'
-    elif 'date' in recognized_text:
-        sarah_v1_response = f"Today is {date.today().strftime('%B %d, %Y')}"
-    elif 'time' in recognized_text:
-        brussels_tz = pytz.timezone('Europe/Brussels')
-        brussels_time = datetime.now(brussels_tz)
-        sarah_v1_response = f"The current time in Brussels is{brussels_time.strftime('%I:%M %p')}"
+    elif 'time' in recognized_text or 'date' in recognized_text:
+        if 'in' in recognized_text:
+            city = recognized_text.split('in')[-1].strip()
+            try:
+                time, date_today = get_local_time(city)
+                if 'time' in recognized_text:
+                    sarah_v1_response = f"The current time in {city} is {time}"
+                elif 'date' in recognized_text:
+                    sarah_v1_response = f"Today in {city} is {date_today}"
+            except:
+                sarah_v1_response = "Sorry, I couldn't find that city. Please try again."
+        else:
+            sarah_v1_response = "Please specify a city for the time or date."
     elif 'goodbye' in recognized_text:
         sarah_v1_response = 'goodbye, have a nice day'
         sarah_v1 = pyttsx3.init() #Text to speech to say goodbye
