@@ -6,7 +6,8 @@ from datetime import date, datetime
 import python_weather
 import asyncio
 import pyjokes
-        
+import pytz
+
 async def get_weather(city: str) -> str:
     async with python_weather.Client(unit=python_weather.IMPERIAL) as client:
         weather = await client.get(city)
@@ -34,7 +35,9 @@ while True:
     elif 'date' in recognized_text:
         sarah_v1_response = f"Today is {date.today().strftime('%B %d, %Y')}"
     elif 'time' in recognized_text:
-        sarah_v1_response = f"The current time is{datetime.now().strftime('%I:%M %p')}"
+        brussels_tz = pytz.timezone('Europe/Brussels')
+        brussels_time = datetime.now(brussels_tz)
+        sarah_v1_response = f"The current time in Brussels is{brussels_time.strftime('%I:%M %p')}"
     elif 'goodbye' in recognized_text:
         sarah_v1_response = 'goodbye, have a nice day'
         sarah_v1 = pyttsx3.init() #Text to speech to say goodbye
