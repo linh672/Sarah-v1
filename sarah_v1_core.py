@@ -1,9 +1,9 @@
 #import neccessary librabries
 import asyncio
 import pyjokes
-from speech_to_text import recognize_speech
-from text_to_speech import speak_response
-from sarah_module import get_local_time ,get_weather
+from sarah_module.speech_to_text import recognize_speech
+from sarah_module.text_to_speech import speak_response
+from sarah_module.basic_module import get_local_time ,get_weather
 
 while True:
     #transform speech recognition to user input
